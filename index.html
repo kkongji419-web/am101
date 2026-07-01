@@ -9,596 +9,55 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --navy: #071426;
-      --navy-2: #10243f;
-      --cream: #f7f1e7;
-      --white: #ffffff;
-      --gold: #c7a35c;
-      --gold-soft: #efe0ba;
-      --text: #182233;
-      --muted: #6b7280;
-      --line: rgba(7, 20, 38, 0.1);
-      --shadow: 0 28px 80px rgba(7, 20, 38, 0.14);
-
-      --hamburger: #b8272f;
-      --coffee: #7b5a42;
-      --kkd: #18824c;
-      --concession: #2868b7;
-      --newbiz: #d98a18;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      min-height: 100vh;
-      font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 12% 8%, rgba(199, 163, 92, 0.2), transparent 30%),
-        radial-gradient(circle at 86% 12%, rgba(255, 255, 255, 0.8), transparent 28%),
-        linear-gradient(145deg, #f7f1e7 0%, #ffffff 46%, #edf2f8 100%);
-      letter-spacing: -0.035em;
-      line-height: 1.65;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(7, 20, 38, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(7, 20, 38, 0.035) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent 72%);
-      z-index: -1;
-    }
-
-    .wrap {
-      width: min(1220px, calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 16px 0;
-      background: rgba(255, 255, 255, 0.72);
-      border-bottom: 1px solid rgba(7, 20, 38, 0.08);
-      backdrop-filter: blur(24px);
-    }
-
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand-title strong {
-      display: block;
-      color: var(--navy);
-      font-size: clamp(19px, 2vw, 28px);
-      font-weight: 800;
-      letter-spacing: -0.065em;
-    }
-
-    .brand-title span {
-      display: block;
-      margin-top: 2px;
-      color: var(--gold);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 8px;
-    }
-
-    .nav button {
-      position: relative;
-      padding: 10px 15px;
-      border: 1px solid rgba(7, 20, 38, 0.1);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.48);
-      color: #394150;
-      font-family: inherit;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.25s ease;
-    }
-
-    .nav button::after {
-      content: "";
-      position: absolute;
-      left: 16px;
-      right: 16px;
-      bottom: 6px;
-      height: 2px;
-      border-radius: 999px;
-      background: var(--gold);
-      opacity: 0;
-      transform: scaleX(0.4);
-      transition: 0.25s ease;
-    }
-
-    .nav button:hover,
-    .nav button.active {
-      color: var(--navy);
-      background: rgba(255, 255, 255, 0.86);
-      border-color: rgba(199, 163, 92, 0.35);
-    }
-
-    .nav button.active::after {
-      opacity: 1;
-      transform: scaleX(1);
-    }
-
-    .hero {
-      padding: 86px 0 54px;
-    }
-
-    .hero-inner {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 42px;
-      align-items: center;
-    }
-
-    .hero-copy {
-      min-height: 440px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      width: fit-content;
-      margin-bottom: 26px;
-      padding: 8px 14px;
-      border: 1px solid rgba(199, 163, 92, 0.34);
-      border-radius: 999px;
-      color: var(--gold);
-      background: rgba(255,255,255,0.58);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      color: var(--navy);
-      font-size: clamp(56px, 8vw, 112px);
-      line-height: 0.92;
-      font-weight: 900;
-      letter-spacing: -0.095em;
-      margin-bottom: 32px;
-    }
-
-    .hero-copy p {
-      max-width: 620px;
-      color: var(--muted);
-      font-size: clamp(17px, 2vw, 22px);
-      font-weight: 400;
-      line-height: 1.75;
-      word-break: keep-all;
-    }
-
-    .hero-panel {
-      position: relative;
-      padding: 34px;
-      border-radius: 36px;
-      background:
-        radial-gradient(circle at 84% 12%, rgba(239, 224, 186, 0.42), transparent 28%),
-        linear-gradient(145deg, rgba(7, 20, 38, 0.96), rgba(16, 36, 63, 0.94));
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .hero-panel::before {
-      content: "";
-      position: absolute;
-      inset: 1px;
-      border-radius: 35px;
-      border: 1px solid rgba(255,255,255,0.16);
-      pointer-events: none;
-    }
-
-    .hero-panel h2 {
-      position: relative;
-      color: var(--white);
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: -0.06em;
-      margin-bottom: 24px;
-    }
-
-    .overview-list {
-      position: relative;
-      display: grid;
-      gap: 14px;
-    }
-
-    .overview-item {
-      padding: 18px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-    }
-
-    .overview-item span {
-      display: block;
-      margin-bottom: 5px;
-      color: var(--gold-soft);
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .overview-item strong {
-      color: var(--white);
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: -0.05em;
-    }
-
-    main {
-      padding-bottom: 84px;
-    }
-
-    .tab-page {
-      display: none;
-      animation: fadeUp 0.42s ease;
-    }
-
-    .tab-page.active {
-      display: block;
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(16px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .page-head {
-      margin-bottom: 26px;
-      padding-bottom: 22px;
-      border-bottom: 1px solid rgba(7, 20, 38, 0.12);
-    }
-
-    .page-head .label {
-      display: inline-block;
-      margin-bottom: 12px;
-      color: var(--gold);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .page-head h2 {
-      color: var(--navy);
-      font-size: clamp(34px, 5vw, 62px);
-      line-height: 1.06;
-      font-weight: 850;
-      letter-spacing: -0.085em;
-    }
-
-    .page-head p {
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 17px;
-      font-weight: 400;
-      word-break: keep-all;
-    }
-
-    .common-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-bottom: 18px;
-    }
-
-    .info-card {
-      padding: 24px;
-      min-height: 176px;
-      border-radius: 28px;
-      background: rgba(255,255,255,0.78);
-      border: 1px solid rgba(7, 20, 38, 0.08);
-      box-shadow: 0 18px 50px rgba(7, 20, 38, 0.08);
-    }
-
-    .info-card h3 {
-      margin-bottom: 12px;
-      color: var(--navy);
-      font-size: 17px;
-      font-weight: 750;
-      letter-spacing: -0.05em;
-    }
-
-    .info-card p,
-    .info-card li {
-      color: #4b5563;
-      font-size: 15px;
-      font-weight: 450;
-      line-height: 1.72;
-      word-break: keep-all;
-    }
-
-    .info-card ul {
-      padding-left: 18px;
-    }
-
-    .wide-card {
-      grid-column: span 2;
-    }
-
-    .map-card {
-      margin-top: 18px;
-      padding: 26px;
-      border-radius: 32px;
-      background: rgba(255,255,255,0.82);
-      border: 1px solid rgba(7, 20, 38, 0.08);
-      box-shadow: 0 18px 50px rgba(7, 20, 38, 0.08);
-    }
-
-    .map-placeholder,
-    .image-placeholder {
-      min-height: 300px;
-      display: grid;
-      place-items: center;
-      padding: 30px;
-      border-radius: 26px;
-      border: 1px dashed rgba(7, 20, 38, 0.24);
-      color: var(--muted);
-      text-align: center;
-      font-size: 15px;
-      font-weight: 500;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(199, 163, 92, 0.14), transparent 40%),
-        linear-gradient(145deg, #ffffff, #f9f4eb);
-    }
-
-    .brand-page {
-      --brand: var(--gold);
-    }
-
-    .brand-page.hamburger { --brand: var(--hamburger); }
-    .brand-page.coffee { --brand: var(--coffee); }
-    .brand-page.kkd { --brand: var(--kkd); }
-    .brand-page.concession { --brand: var(--concession); }
-    .brand-page.newbiz { --brand: var(--newbiz); }
-
-    .brand-head {
-      position: relative;
-      margin-bottom: 26px;
-      padding: 40px;
-      border-radius: 34px;
-      background:
-        linear-gradient(145deg, rgba(255,255,255,0.92), rgba(255,255,255,0.68));
-      border: 1px solid rgba(7, 20, 38, 0.08);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .brand-head::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 7px;
-      height: 100%;
-      background: var(--brand);
-    }
-
-    .brand-head::after {
-      content: "";
-      position: absolute;
-      width: 220px;
-      height: 220px;
-      right: -80px;
-      top: -90px;
-      border-radius: 50%;
-      background: radial-gradient(circle, color-mix(in srgb, var(--brand) 26%, transparent), transparent 70%);
-      pointer-events: none;
-    }
-
-    .brand-head .label {
-      color: var(--brand);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .brand-head h2 {
-      margin-top: 12px;
-      color: var(--navy);
-      font-size: clamp(38px, 5vw, 68px);
-      line-height: 1.02;
-      font-weight: 900;
-      letter-spacing: -0.09em;
-    }
-
-    .brand-head p {
-      margin-top: 14px;
-      max-width: 720px;
-      color: var(--muted);
-      font-size: 17px;
-      font-weight: 400;
-      word-break: keep-all;
-    }
-
-    .editorial-grid {
-      display: grid;
-      grid-template-columns: 1.28fr 0.72fr;
-      gap: 20px;
-      margin-bottom: 20px;
-    }
-
-    .content-block {
-      padding: 28px;
-      border-radius: 30px;
-      background: rgba(255,255,255,0.84);
-      border: 1px solid rgba(7, 20, 38, 0.08);
-      box-shadow: 0 18px 50px rgba(7, 20, 38, 0.08);
-    }
-
-    .content-block h3 {
-      margin-bottom: 16px;
-      color: var(--navy);
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: -0.06em;
-    }
-
-    .lecture-room {
-      padding: 20px;
-      border-radius: 22px;
-      background: #ffffff;
-      border-left: 5px solid var(--brand);
-      color: #4b5563;
-      font-size: 15px;
-      font-weight: 450;
-      line-height: 1.9;
-    }
-
-    .table-wrap {
-      overflow-x: auto;
-      border-radius: 24px;
-      border: 1px solid rgba(7, 20, 38, 0.08);
-    }
-
-    table {
-      width: 100%;
-      min-width: 560px;
-      border-collapse: collapse;
-      background: #ffffff;
-      font-size: 14px;
-    }
-
-    th {
-      padding: 15px 14px;
-      color: #ffffff;
-      background: var(--navy);
-      font-weight: 700;
-      text-align: center;
-    }
-
-    td {
-      padding: 14px;
-      color: #4b5563;
-      border-bottom: 1px solid rgba(7, 20, 38, 0.08);
-      font-weight: 450;
-      text-align: center;
-    }
-
-    tr:last-child td {
-      border-bottom: none;
-    }
-
-    footer {
-      padding: 34px 0 54px;
-      color: var(--muted);
-      text-align: center;
-      font-size: 14px;
-      font-weight: 400;
-    }
-
-    @media (max-width: 1020px) {
-      .topbar {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .nav {
-        justify-content: flex-start;
-      }
-
-      .hero-inner,
-      .editorial-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .common-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 640px) {
-      .wrap {
-        width: min(100% - 24px, 1220px);
-      }
-
-      .hero {
-        padding: 58px 0 38px;
-      }
-
-      .hero-copy {
-        min-height: auto;
-      }
-
-      .hero-panel,
-      .brand-head,
-      .content-block,
-      .map-card,
-      .info-card {
-        padding: 22px;
-        border-radius: 24px;
-      }
-
-      .nav {
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .nav button {
-        padding: 10px 8px;
-        font-size: 13px;
-      }
-
-      .common-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .wide-card {
-        grid-column: span 1;
-      }
-
-      h1 {
-        font-size: clamp(46px, 14vw, 64px);
-      }
-    }
-  </style>
+ 
 </head>
 
 <body>
   <header>
+    <body>
+  <header>
+
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <span class="eyebrow">2026 AM Education</span>
+        <h1>AM<br />입문교육 사전안내</h1>
+        <p>
+          <strong>AM 입사를 진심으로 축하드립니다.</strong><br /><br />
+          이번 입문교육은 여러분의 새로운 시작을 함께하는 첫 과정입니다.<br />
+          교육 기간 동안 AM으로서 필요한 기본 역량과 브랜드별 교육이 진행되오니,
+          아래 안내사항을 확인하시어 교육 참석에 차질이 없도록 준비해 주시기 바랍니다.
+        </p>
+      </div>
+
+      <aside class="hero-panel">
+        <h2>Guide Overview</h2>
+        <div class="overview-list">
+          <div class="overview-item">
+            <span>01</span>
+            <strong>오시는 길</strong>
+          </div>
+          <div class="overview-item">
+            <span>02</span>
+            <strong>교육 일정</strong>
+          </div>
+          <div class="overview-item">
+            <span>03</span>
+            <strong>기숙사 안내</strong>
+          </div>
+          <div class="overview-item">
+            <span>04</span>
+            <strong>출결 안내</strong>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <main class="wrap">
+    ...
+  </main>
+</body>
     <div class="wrap topbar">
       <div class="brand-title">
         <strong>AM 입문교육 안내</strong>
@@ -619,12 +78,9 @@
  <section id="common" class="tab-page active">
   <div class="page-head">
     <span class="label">Common Information</span>
-    <h2>AM 입문교육 사전안내</h2>
+    <h2>교육 참석 전 확인사항</h2>
     <p>
-      <strong>AM 입사를 진심으로 축하드립니다.</strong><br />
-      이번 입문교육은 여러분의 새로운 시작을 함께하는 첫 과정입니다.
-      교육 기간 동안 AM으로서 필요한 기본 역량과 브랜드별 교육이 진행되오니,
-      아래 안내사항을 확인하시어 교육 참석에 차질이 없도록 준비해 주시기 바랍니다.
+      각 브랜드별 자세한 일정과 복장규정은 상단 메뉴에서 해당 브랜드를 선택하여 확인해 주세요.
     </p>
   </div>
 
@@ -649,33 +105,27 @@
     </div>
 
     <div class="info-card wide-card">
-      <h3>고용24 사전 준비</h3>
-      <ul>
-        <li>고용24 회원가입</li>
-        <li>고용24 출결관리 앱 설치</li>
-        <li><strong>본인인증 필수</strong></li>
-        <li><strong>출결기기등록 필수</strong></li>
-      </ul>
+      <h3>기숙사 안내</h3>
+      <p>
+        사전 신청자에 한하여 이용 가능합니다.<br />
+        기숙사 이용자는 잇소키 카카오톡 알림톡을 반드시 확인해 주세요.
+      </p>
     </div>
 
     <div class="info-card wide-card">
-      <h3>기숙사 안내 <span style="font-size: 13px; color: #6b7280;">(사전 신청자에 한함)</span></h3>
-
-      <p style="margin-bottom: 14px;">
-        <img
-          src="itsokey_logo.png"
-          alt="잇소키 로고"
-          style="width: 150px; max-width: 100%;"
-        />
+      <h3>출결 안내</h3>
+      <p>
+        교육 참석 전 고용24 회원가입 및 출결관리 앱 설치 후
+        본인인증과 출결기기등록을 완료해 주세요.
       </p>
-
-      <ul>
-        <li>기숙사 사용자는 <strong>잇소키 카카오톡 알림톡</strong>으로 안내가 발송될 예정입니다.</li>
-        <li><strong>해당 내용은 삭제하지 말고 반드시 확인해 주세요.</strong></li>
-        <li>사전 입실 가능 시간: 오후 5시 ~ 오후 10시</li>
-        <li>준비물: 개인용품 일체(세면도구, 수건 등)</li>
-      </ul>
     </div>
+  </div>
+
+  <div class="common-notice">
+    <strong>안내사항</strong><br />
+    KTX 이용 시 광명역에서 하차할 경우 지하철 배차 간격이 길고,
+    배차 시간이 맞지 않는 경우가 있을 수 있습니다.
+    대중교통 시간을 미리 확인하시어 교육 시작 시간에 늦지 않도록 주의해 주세요.
   </div>
 
   <div class="map-card">
@@ -691,54 +141,47 @@
     </div>
   </div>
 
-  <div class="map-card">
-    <div class="page-head">
-      <span class="label">Transportation Notice</span>
-      <h2>이동 시 유의사항</h2>
-      <p>
-        KTX 이용 시 광명역 하차 후 지하철 배차 간격이 길거나,
-        배차 시간이 맞지 않는 경우가 있으니 사전에 이동 시간을 확인해 주세요.
-      </p>
-    </div>
+  <details class="detail-card">
+    <summary>기숙사 이용 안내</summary>
+    <div class="detail-content">
+      <img src="itsokey_logo.png" alt="잇소키 로고" class="itsokey-logo" />
 
-    <div class="map-placeholder">
-      이동 안내 또는 유의사항 이미지 첨부 예정<br />
-      필요 없을 경우 이 영역은 삭제해도 됩니다.
-    </div>
-  </div>
+      <ul>
+        <li>기숙사 이용은 <strong>사전 신청자에 한함</strong></li>
+        <li>기숙사 사용자는 <strong>잇소키 카카오톡 알림톡</strong>으로 안내가 발송될 예정입니다.</li>
+        <li><strong>해당 내용은 삭제하지 말고 반드시 확인해 주세요.</strong></li>
+        <li>사전 입실 가능 시간: <strong>오후 5시 ~ 오후 10시</strong></li>
+        <li>준비물: 개인용품 일체(세면도구, 수건 등)</li>
+      </ul>
 
-  <div class="map-card">
-    <div class="page-head">
-      <span class="label">Employment24 Guide</span>
-      <h2>고용24 설치 및 출결 준비</h2>
-      <p>아래 영역에 고용24 회원가입 및 출결관리 앱 설치 방법 이미지를 삽입하세요.</p>
-    </div>
+      <div class="map-placeholder" style="margin-top: 18px;">
+        잇소키 카카오톡 알림톡 이미지 첨부 예정<br />
+        예시: &lt;img src="itsokey-kakao.png" alt="잇소키 카카오톡 알림톡" /&gt;
+      </div>
 
-    <div class="map-placeholder">
-      고용24 설치 방법 이미지 첨부 예정<br />
-      예시: &lt;img src="employment24-guide.png" alt="고용24 설치 방법" /&gt;
+      <div class="map-placeholder" style="margin-top: 18px;">
+        잇소키 기숙사 문 여는 화면 이미지 첨부 예정<br />
+        예시: &lt;img src="itsokey-door.png" alt="잇소키 기숙사 문 여는 화면" /&gt;
+      </div>
     </div>
-  </div>
+  </details>
 
-  <div class="map-card">
-    <div class="page-head">
-      <span class="label">Dormitory Guide</span>
-      <h2>기숙사 이용 안내</h2>
-      <p>아래 영역에 잇소키 알림톡 및 기숙사 출입 화면 이미지를 삽입하세요.</p>
+  <details class="detail-card">
+    <summary>고용24 출결 안내</summary>
+    <div class="detail-content">
+      <ul>
+        <li>교육 참석 전 <strong>고용24 회원가입</strong>을 완료해 주세요.</li>
+        <li><strong>고용24 출결관리 앱</strong>을 설치해 주세요.</li>
+        <li>앱 설치 후 <strong>본인인증</strong>을 완료해 주세요.</li>
+        <li>정상적인 출결 확인을 위해 <strong>출결기기등록</strong>을 반드시 완료해 주세요.</li>
+      </ul>
+
+      <div class="map-placeholder" style="margin-top: 18px;">
+        고용24 설치 방법 이미지 첨부 예정<br />
+        예시: &lt;img src="employment24-guide.png" alt="고용24 설치 방법" /&gt;
+      </div>
     </div>
-
-    <div class="map-placeholder">
-      잇소키 카카오톡 알림톡 이미지 첨부 예정<br />
-      예시: &lt;img src="itsokey-kakao.png" alt="잇소키 카카오톡 알림톡" /&gt;
-    </div>
-
-    <br />
-
-    <div class="map-placeholder">
-      잇소키 기숙사 문 여는 화면 이미지 첨부 예정<br />
-      예시: &lt;img src="itsokey-door.png" alt="잇소키 기숙사 문 여는 화면" /&gt;
-    </div>
-  </div>
+  </details>
 </section>
 
     <section id="hamburger" class="tab-page brand-page hamburger">
